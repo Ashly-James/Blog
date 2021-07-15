@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+	<!-- templatemo 419 black white -->
+    <!-- 
+    Black White
+    http://www.templatemo.com/preview/templatemo_419_black_white
+    -->
+	<title>User Home</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/templatemo_style.css" rel="stylesheet" type="text/css">	
+</head>
+<body>
+	<div class="templatemo-logo visible-xs-block">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg logo-left-container">
+			<h1 class="logo-left">Black</h1>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg logo-right-container">
+			<h1 class="logo-right">White</h1>
+		</div>			
+	</div>
+	<div class="templatemo-container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg left-container">
+			<h1 class="logo-left hidden-xs margin-bottom-60">Black</h1>			
+			<div class="tm-left-inner-container">
+				<ul class="nav nav-stacked templatemo-nav">
+				  <!-- <li><a href="index.html" class="active"><i class="fa fa-home fa-medium"></i>Homepage</a></li> -->
+
+				<!-- <li><a href="http://127.0.0.1:8000/login"><i class="fa fa-comments-o fa-medium"></i>Login</a></li> -->
+				<!-- <li><a href="http://127.0.0.1:8000/blog_post">Write<i class="fa fa-comments-o fa-medium"></i> -->
+				<li><a href="http://127.0.0.1:8000/contact">Write
+					<!-- <i class="fa fa-envelope-o fa-medium"></i></a></ -->
+				  <!-- <li><a href="http://127.0.0.1:8000/registration"><i class="fa fa-comments-o fa-medium"></i>Registeration</a></li> -->
+				  <!-- <li><a href="http://127.0.0.1:8000/products"><i class="fa fa-shopping-cart fa-medium"></i>Products</a></li> -->
+				  <!-- <li><a href="testimonials.html"><i class="fa fa-comments-o fa-medium"></i>Testimonials</a></li>
+				  <li><a href="testimonials.html"><i class="fa fa-comments-o fa-medium"></i>Testimonials</a></li> -->
+				  <!-- <li><a href="http://127.0.0.1:8000/services"><i class="fa fa-send-o fa-medium"></i>Services</a></li> -->
+				  <!-- <li><a href="testimonials.html"><i class="fa fa-comments-o fa-medium"></i>Testimonials</a></li> -->
+				  <!-- <li><a href="about.html"><i class="fa fa-gears fa-medium"></i>About Us</a></li> -->
+				  <li><a href="http://127.0.0.1:8000/logout_view"><i class="fa fa-envelope-o fa-medium"></i>Logout</a></li>
+				</ul>
+			</div>
+		</div> <!-- left section -->
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg right-container">
+			<h1 class="logo-right hidden-xs margin-bottom-60">White</h1>		
+			<div class="tm-right-inner-container">
+				<h1 class="templatemo-header">Personal Blogs</h1>
+				<!-- <img src="static/images/wooden-desk.jpg" alt="Wooden Desk" class="img-thumbnail"> -->
+				<article>
+					<!-- <h2>About this template</h2> -->
+					{% for i in msg %}
+					<h2>{{i.subjct}}</h2>
+					<p>{{i.blog}}</p>
+					<form action="user_edit_delete" method="POST">{% csrf_token %}
+					<button class="btn btn-warning" name="edit_id" value="{{i.id}}">Edit</button>
+					<button class="btn btn-warning" name="delete_id" value="{{i.id}}">Delete</button>
+					<input type="hidden" name="email" value={{i.emai}}>
+					<input type="hidden" name="blog" value={{i.blog}}>
+					<!-- <a href="products.html" class="btn btn-warning">View Products</a>			 -->
+				</article>
+				{% endfor %}
+				</form>
+				<!-- <article>
+					<h2>Responsive layout</h2>
+					<p>Maecenas in arcu eget velit lobortis dictum. Donec venenatis, justo quis efficitur pharetra, ligula ante pellentesque purus, sit amet tincidunt mauris elit non est. Etiam auctor, dui ut vehicula convallis, leo purus gravida massa, sed aliquet dui tellus rhoncus magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta lacus posuere, porta risus at, commodo lorem. 
+                    <br><br>Proin commodo, ligula sed consectetur tempus, ante tortor sodales justo, ut iaculis elit orci in risus. Phasellus vestibulum lorem ut lacus vehicula, congue blandit orci vestibulum. In aliquam auctor mi nec lobortis. Fusce pellentesque erat id est rutrum consequat.</p> -->
+                    <!-- {% for i in msg %}
+					<p>{{i.blog}}</p> -->
+					<!-- <a href="services.html" class="btn btn-warning">View Services</a>	 -->
+					<!-- <button class="btn btn-warning" name="id" value="{{i.id}}">Add</button> -->
+					<!-- <form action="user_edit_delete" method="POST">{% csrf_token %}
+					<button class="btn btn-warning" name="edit_id" value="{{i.id}}">Edit</button>
+					<button class="btn btn-warning" name="delete_id" value="{{i.id}}">Delete</button>
+					<input type="hidden" name="email" value={{i.emai}}>			
+					{% endfor %} -->
+				</article>
+				<!-- <article>
+					<h2>Mobile friendly</h2>
+					<p>Etiam aliquet risus purus, at bibendum libero tempus sit amet. Pellentesque imperdiet, erat in finibus volutpat, nisi dui mattis erat, eu elementum libero mauris lobortis odio. Ut at purus mollis, rutrum augue quis, sollicitudin massa. Integer neque augue, lobortis at leo at, blandit euismod nunc. Vivamus iaculis turpis at neque malesuada, ut tristique tortor viverra.</p>
+					<a href="about.html" class="btn btn-warning">Our Details</a>
+
+				</article> -->
+				<footer>
+					<!-- <p class="col-lg-6 col-md-6 col-sm-12 col-xs-12 templatemo-copyright">Copyright &copy; 2084 Your Company Name -->
+					 <!-- Credit: www.templatemo.com</p> -->
+					<p class="col-lg-6 col-md-6 col-sm-12 col-xs-12 templatemo-social">
+						<a href="#"><i class="fa fa-facebook fa-medium"></i></a>
+						<a href="#"><i class="fa fa-twitter fa-medium"></i></a>
+						<a href="#"><i class="fa fa-google-plus fa-medium"></i></a>
+						<a href="#"><i class="fa fa-youtube fa-medium"></i></a>
+						<a href="#"><i class="fa fa-linkedin fa-medium"></i></a>
+					</p>
+				</footer>
+			</div>	
+		</div> <!-- right section -->
+	</div>	
+</body>
+</html>

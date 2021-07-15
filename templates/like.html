@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form action="like_add" method="POST">{% csrf_token %}
+	<!-- {% for i in msg %} -->
+		<input type="text" class="form-control" placeholder="Email" name="email">
+		<input type="hidden" name="id1" value={{msg}}>
+	 <button type="submit" class="float" value="{{msg}}">Submit</button>
+	
+	<!-- {% endfor %} -->
+</form>
+</body>
+</html>
