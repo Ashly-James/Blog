@@ -146,11 +146,12 @@ def blog_edit(request):
 	pid=request.POST.get('id')
 	username=request.session['logmail']
 	q=Blog.objects.filter(emai=username)
+	subject=request.POST['subject']
 	# email2=request.POST['email1']
 	# print(email2)
 	update_blog=request.POST['blog']
 	# q=Blog.objects.filter(id=pid,username=email)
-	Blog.objects.filter(id=pid,emai=username).update(blog=update_blog)
+	Blog.objects.filter(id=pid,emai=username).update(blog=update_blog,subjct=subject)
 	return render(request,"user_personal_page.html",{"msg":q})
 
 def admin_blog_view(request):
@@ -166,7 +167,8 @@ def admn_edit_delete(request):
 		q=Blog.objects.filter(id=pid,emai=username)
 		print("q",q)
 		# q=Blog.objects.filter(id=pid,emai=username)
-		return render(request,"user_blog_edit.html",{"msg":q})
+		# return render(request,"user_blog_edit.html",{"msg":q})
+		return render(request,"admin_edit_page.html",{"msg":q})
 	elif request.POST.get('delete_id')!=None:
 		pid=request.POST.get('delete_id')
 		a=Blog.objects.get(id=pid)
@@ -178,6 +180,14 @@ def admn_edit_delete(request):
 		Blog.objects.filter(id=pid).update(likes=F('likes')+1)
 		q=Blog.objects.all()
 		return render(request,"admin_blog_view.html",{"msg":q})
+	return render(request,"admin_blog_view.html",{"msg":q})
+def admin_blog_edit(request):
+	username=request.session['logmail']
+	pid=request.POST.get('id')
+	subject=request.POST['subject']
+	update_blog=request.POST['blog']
+	Blog.objects.filter(id=pid,emai=username).update(blog=update_blog,subjct=subject)
+	q=Blog.objects.all()
 	return render(request,"admin_blog_view.html",{"msg":q})
 def usre_back(request):
 	username=request.session['logmail']
