@@ -20,5 +20,5 @@ path('admn_edit_delete',views.admn_edit_delete),
 path('usre_back',views.usre_back),
 path('like',views.like),
 path('like_add',views.like_add),
-
+path('admin_back',views.admin_back),
 ]

@@ -152,6 +152,7 @@ def blog_edit(request):
 	# q=Blog.objects.filter(id=pid,username=email)
 	Blog.objects.filter(id=pid,emai=username).update(blog=update_blog)
 	return render(request,"user_personal_page.html",{"msg":q})
+
 def admin_blog_view(request):
 	q=Blog.objects.all()
 	return render(request,"admin_blog_view.html",{"msg":q})
@@ -164,7 +165,8 @@ def admn_edit_delete(request):
 		# Blog.objects.filter(id=pid).update(blog=)
 		q=Blog.objects.filter(id=pid,emai=username)
 		print("q",q)
-		return render(request,"admin_blog_view.html",{"msg":q})
+		# q=Blog.objects.filter(id=pid,emai=username)
+		return render(request,"user_blog_edit.html",{"msg":q})
 	elif request.POST.get('delete_id')!=None:
 		pid=request.POST.get('delete_id')
 		a=Blog.objects.get(id=pid)
@@ -178,7 +180,8 @@ def admn_edit_delete(request):
 		return render(request,"admin_blog_view.html",{"msg":q})
 	return render(request,"admin_blog_view.html",{"msg":q})
 def usre_back(request):
-	q=Blog.objects.filter(emai=request.POST['logmail'])
+	username=request.session['logmail']
+	q=Blog.objects.filter(emai=username)
 	return render(request,"user_personal_page.html",{"msg":q})
 def like(request):
 	pid=request.POST['id']
@@ -193,3 +196,6 @@ def like_add(request):
 	else:
 		return render(request,"like.html",{"msg":"Please Register"})
 		# return render(request,"index.html",{"msg":"ss"})
+def admin_back(request):
+	q=Registration.objects.all()
+	return render(request,"admin_page.html",{"msg":q})
